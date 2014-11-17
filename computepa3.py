@@ -32,22 +32,30 @@ print a
 print b
 print c
 print d
+print "----------"
 print e
 print f
 
-ra_off = c-a+e
-dec_off= d-b+f
+ra_off = a-c-e
+dec_off= b-d-f
+
+print "----------"
+print ra_off
+print dec_off
+print "----------"
 
 ra_off = normalize(ra_off.arcs,-324000.0,324000.0)  #ra offset in deg, then normalize
 #dec_off= normalize(dec_off.d,)
+dec_off= dec_off.arcs
 
 #separation = r2arcs(sep(d2r(ra1),d2r(dec1),d2r(ra2),d2r(dec2)))
 #pa = r2d(bear(d2r(ra2),d2r(dec2),d2r(ra1),d2r(dec1)))
-pa = bear(0,0,arcs2r(ra_off),arcs2r(dec_off))
+pa = r2d(bear(0,0,arcs2r(ra_off),arcs2r(dec_off)))
 
 #print "sep: ", separation
 print "pa:", pa
 pa = normalize(pa,0,360)
 print "pa:", pa
 print "E",ra_off
-print "N",dec_off.arcs
+print "N",dec_off
+
