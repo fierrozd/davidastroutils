@@ -5,10 +5,10 @@ import sys
 
 #Code finds the SN-Galaxy offset and PA using ONE finder star at a time
 
-galy = raw_input("Galaxy: ")
-star = raw_input("  Star: ")
-star_tar_ra = raw_input("E-W Offset from Star to target: ")
-star_tar_dec= raw_input("N-S Offset from Star to target: ")
+galy = raw_input("Galaxy: ")                                    #Enter the Galaxy coordinates from the SDSS fits
+star = raw_input("  Star: ")                                    #Enter the offset star coords from the SDSS fits
+star_tar_ra = raw_input("E-W Offset from Star to target: ")     #Enter the offset from the finder PDF
+star_tar_dec= raw_input("N-S Offset from Star to target: ")     #Enter the offset from the finder PDF
 
 galy_ra, galy_dec = str.split(galy)
 star_ra, star_dec = str.split(star)
