@@ -3,6 +3,8 @@ import numpy as np
 from angles import *
 import sys
 
+#Code finds the SN-Galaxy offset and PA using ONE finder star at a time
+
 galy = raw_input("Galaxy: ")
 star = raw_input("  Star: ")
 star_tar_ra = raw_input("E-W Offset from Star to target: ")
