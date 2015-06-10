@@ -25,13 +25,13 @@ a = AlphaAngle(d=galy_ra)
 b = DeltaAngle(d=galy_dec)
 c = AlphaAngle(d=star_ra) 
 d = DeltaAngle(d=star_dec)
-e = AlphaAngle(h=star_tar_ra/15.0) #6/10
+e = AlphaAngle(h=star_tar_ra/15.0)
 f = DeltaAngle(d=star_tar_dec)
 
-print a
-print b
-print c
-print d
+print "a",a
+print "b",b
+print "c",c
+print "d",d
 print "----------"
 print "e",e
 print "f",f
@@ -39,16 +39,16 @@ print "f",f
 #ra_off = a-c-e #SN-->Galaxy Offset
 #dec_off= b-d-f #SN-->Galaxy Offset
 #ra_off = c-a+e  #Galaxy--> SN Offset
-ra_off1 = c-a  #Galaxy--> SN Offset
-dec_off1= d-b  #Galaxy--> SN Offset
+ra_off1 = c-a  #intermediate step
+dec_off1= d-b  #intermediate step
 ra_off = c-a+e  #Galaxy--> SN Offset
 dec_off= d-b+f  #Galaxy--> SN Offset
 
 print "----------"
 print "c-a",ra_off1
-print "d-b", dec_off1
+print "d-b",dec_off1
 print "----------"
-print "c-a+e", ra_off
+print "c-a+e",ra_off
 print "d-b+f", dec_off
 print "----------"
 
