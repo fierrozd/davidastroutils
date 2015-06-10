@@ -3,12 +3,10 @@ import numpy as np
 from angles import *
 import sys
 
-#Code finds the SN-Galaxy offset and PA using ONE finder star at a time
-
-galy = raw_input("Galaxy: ")                                    #Enter the Galaxy coordinates from the SDSS fits
-star = raw_input("  Star: ")                                    #Enter one finder star coords from the SDSS fits
-star_tar_ra = raw_input("E-W Offset from Star to target: ")     #Enter the offset from the finder PDF
-star_tar_dec= raw_input("N-S Offset from Star to target: ")     #Enter the offset from the finder PDF
+galy = raw_input("Galaxy: ")
+star = raw_input("  Star: ")
+star_tar_ra = raw_input("E-W Offset from Star to target: ")
+star_tar_dec= raw_input("N-S Offset from Star to target: ")
 
 galy_ra, galy_dec = str.split(galy)
 star_ra, star_dec = str.split(star)
@@ -23,11 +21,11 @@ star_tar_dec= float(star_tar_dec)
 star_tar_ra = arcs2d(star_tar_ra)
 star_tar_dec= arcs2d(star_tar_dec)
 
-a = AlphaAngle(d=galy_ra)
+a = AlphaAngle(d=galy_ra) 
 b = DeltaAngle(d=galy_dec)
-c = AlphaAngle(d=star_ra)
+c = AlphaAngle(d=star_ra) 
 d = DeltaAngle(d=star_dec)
-e = AlphaAngle(d=star_tar_ra)
+e = AlphaAngle(h=star_tar_ra/15.0) #6/10
 f = DeltaAngle(d=star_tar_dec)
 
 print a
@@ -35,18 +33,28 @@ print b
 print c
 print d
 print "----------"
-print e
-print f
+print "e",e
+print "f",f
 
-ra_off = a-c-e                   #The SN-Gal offset equals the Gal_RA  - star_RA  - star-SN_offset
-dec_off= b-d-f                   #The SN-Gal offset equals the Gal_Dec - star_Dec - star-SN_offset
+#ra_off = a-c-e #SN-->Galaxy Offset
+#dec_off= b-d-f #SN-->Galaxy Offset
+#ra_off = c-a+e  #Galaxy--> SN Offset
+ra_off1 = c-a  #Galaxy--> SN Offset
+dec_off1= d-b  #Galaxy--> SN Offset
+ra_off = c-a+e  #Galaxy--> SN Offset
+dec_off= d-b+f  #Galaxy--> SN Offset
 
 print "----------"
-print ra_off
-print dec_off
+print "c-a",ra_off1
+print "d-b", dec_off1
+print "----------"
+print "c-a+e", ra_off
+print "d-b+f", dec_off
 print "----------"
 
-ra_off = normalize(ra_off.arcs,-324000.0,324000.0)  #ra offset in deg, then normalize
+#6/10#ra_off = normalize(ra_off.arcs,-324000.0,324000.0)  #ra offset in deg, then normalize
+#6/10#ra_off = normalize(ra_off.arcs,-324000.0,324000.0)  #ra offset in deg, then normalize
+ra_off = ra_off.arcs #6/10
 #dec_off= normalize(dec_off.d,)
 dec_off= dec_off.arcs
 
@@ -60,4 +68,3 @@ pa = normalize(pa,0,360)
 print "pa:", pa
 print "E",ra_off
 print "N",dec_off
-
